@@ -32,7 +32,7 @@ app.post('/', function (req, res) {
     console.log('INCOMING POST REQUEST - Load Template');
     console.log(req.body);
     res.send({
-        name: "nodejswashere",
+        name: "brendan",
         age: "28"
     });
 
