@@ -21,7 +21,10 @@ app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function (req, res) {
 
-    console.log('INCOMING GET REQUEST - Load Template');
+    console.log('\n');
+    console.log('************************************'.black.bgWhite);
+    console.log('INCOMING GET REQUEST - Load Template'.black.bgWhite);
+    console.log('************************************'.black.bgWhite);
     var html = fs.readFileSync('static/views/initShell.html');
     res.end(html);
 
@@ -29,8 +32,13 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res) {
 
-    console.log('INCOMING POST REQUEST - Load Template');
+    console.log('\n');
+    console.log('*********************'.black.bgWhite);
+    console.log('INCOMING POST REQUEST'.black.bgWhite);
+    console.log('*********************'.black.bgWhite);
+    console.log('\n');
     console.log(req.body);
+
     res.send({
         name: "brendan",
         age: "28"
