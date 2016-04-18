@@ -1,14 +1,18 @@
 'use strict';
-var fs = require('fs');
-var colors = require('colors');
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser')
+
+var fs = require('fs'),
+    colors = require('colors'),
+    express = require('express'),
+    app = express(),
+    bodyParser = require('body-parser'),
+    tools = require('./tools.js')();
+
+console.log(sum(1, 2));
 
 
 app.use(bodyParser.urlencoded({
     extended: false
-}))
+}));
 
 app.use(bodyParser.json())
 app.use(express.static('static'));
@@ -20,7 +24,7 @@ app.use(express.static('conn'));
 app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function (req, res) {
-
+    console.log(authenticate());
     console.log('\n');
     console.log('************************************'.black.bgWhite);
     console.log('INCOMING GET REQUEST - Load Template'.black.bgWhite);
@@ -53,3 +57,25 @@ app.listen(app.get('port'), function () {
     console.log('********************************************'.black.bgWhite);
     console.log('\n');
 });
+
+app.post('/ig', function (req, res, next) {
+    var ig = require('instagram-node').instagram({});
+    ig.use({
+        access_token: 'YOUR_ACCESS_TOKEN'
+    });
+
+    ig.add_like(req.body.media_id, {
+        sign_request: {
+            client_secret: '95196ee487154c46b9dcb662483aa509',
+            // Then you can specify the request:
+            client_req: req,
+            // or the IP on your own:
+            ip: 'XXX.XXX.XXX.XXX'
+        }
+    }, function (err) {
+        // handle err here
+        return res.send('OK');
+    });
+});
+
+//

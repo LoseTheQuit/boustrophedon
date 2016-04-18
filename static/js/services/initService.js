@@ -17,7 +17,7 @@ angular.module("initModule")
 
             $http({
                 method: 'POST',
-                url: '/',
+                url: '/ig',
                 data: {
                     name: "LTQ"
                 }
