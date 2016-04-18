@@ -1,3 +1,3 @@
 # ltq
 
-using two projects to manage the same project
+# this is an angular template

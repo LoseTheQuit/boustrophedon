@@ -9,9 +9,8 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({
     extended: false
 }))
+
 app.use(bodyParser.json())
-
-
 app.use(express.static('static'));
 app.use(express.static('bower_components'));
 app.use(express.static(__dirname + 'conn'));
@@ -27,7 +26,6 @@ app.get('/', function (req, res) {
     res.end(html);
 
 });
-
 
 app.post('/', function (req, res) {
 
