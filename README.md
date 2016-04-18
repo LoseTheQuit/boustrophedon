@@ -1,3 +1,1 @@
-# ltq
-
-# this is an angular template
+# A sanbox of collaborative efforts 
