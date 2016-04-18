@@ -9,9 +9,9 @@ angular.module("initModule")
 
         return {
 
-            templateUrl: '/templates/init.html',
+            templateUrl: '/views/init.html',
             controller: 'initController',
-            replace: true
+            replace: false
         }
 
     });
