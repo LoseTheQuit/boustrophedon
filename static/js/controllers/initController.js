@@ -32,16 +32,17 @@ angular.module("initModule")
             });
         };
 
+        $scope.windowInfoWithToken = "as";
+
         $scope.windowInfoWithToken = dataService.getWindowInfo();
 
-        console.info(windowInfoWithToken);
+        console.info(dataService.getWindowInfo());
 
-        dataService.tapInsta(function (instagramData, response) {
-
-
+        dataService.tapInsta(function (windowInfoWithToken, response) {
 
             $scope.instagramData = response.data.link;
             return response.data.link
+
         });
 
         //        dataService.tapInsta(function (response) {
