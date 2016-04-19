@@ -74,7 +74,7 @@ app.post('/ig', function (req, res, next) {
         }
     }, function (err) {
         // handle err here
-        return res.send('OK');
+        return res.send('NOT OK');
     });
 });
 
