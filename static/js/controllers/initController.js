@@ -29,8 +29,6 @@ angular.module("initModule")
             console.info($scope.windowInfoWithToken);
 
             dataService.tapInsta($scope.windowInfoWithToken, function (response) {
-                console.info('ITS ON BRO');
-
                 console.warn(response.data);
 
                 //    $scope.instagramData = response.data.link;

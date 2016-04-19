@@ -5,7 +5,10 @@ let fs = require('fs'),
     express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
-    tools = require('./tools.js')();
+    tools = require('./tools.js')(),
+    Client = require('node-rest-client').Client;
+
+var client = new Client();
 
 console.log(sum(5, 2));
 
@@ -58,15 +61,32 @@ app.listen(app.get('port'), function () {
 
 });
 
+
+let BASE_IG_URL = 'https://api.instagram.com/oauth/access_token';
+let IG_CLIENT_SECRET = '&client_secret=95196ee487154c46b9dcb662483aa509'
+let ds = 'grant_type=authorization_code';
 app.post('/ig', function (req, res, next) {
 
     console.log(req.body);
     console.log(req.body.token);
+    let ACCESS_TOKEN = req.body.token;
 
-    res.send({
-        name: "Brendan",
-        token: req.body.token
+    let instaData = {
+        client_id: 'e272444723924d49bb78da2b5e5c4dfd',
+        client_secret: '95196ee487154c46b9dcb662483aa509',
+        grant_type: 'authorization_code',
+        redirect_uri: 'https://the-mixup.herokuapp.com',
+        code: ACCESS_TOKEN
+    }
+
+    client.post('https://api.instagram.com/oauth/access_token', JSON.stringify(instaData), function (data, response) {
+        // parsed response body as js object 
+        res.send(data);
+        console.log(data);
+        // raw response 
+        console.log(response);
     });
+
 
     //    var ig = require('instagram-node').instagram({});
     //
