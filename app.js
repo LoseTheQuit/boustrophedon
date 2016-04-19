@@ -98,15 +98,23 @@ app.post('/ig', function (req, res, next) {
     let ACCESS_TOKEN = req.body.token;
 
     let instaData = {
-        client_id: 'b23670e220f14f1c89c11f627c9f9953',
+
         client_secret: 'dd78c7ffbadd4a10a49f24675356c4d2',
+        client_id: 'b23670e220f14f1c89c11f627c9f9953',
         grant_type: 'authorization_code',
         redirect_uri: 'https://the-mixup.herokuapp.com',
-        code: ACCESS_TOKEN
+        code: req.body.token
     }
 
 
-    client.post('https://api.instagram.com/oauth/access_token', JSON.stringify(instaData), function (data, response) {
+    client.post('https://api.instagram.com/oauth/access_token', {
+
+        client_secret: 'dd78c7ffbadd4a10a49f24675356c4d2',
+        client_id: 'b23670e220f14f1c89c11f627c9f9953',
+        grant_type: 'authorization_code',
+        redirect_uri: 'https://the-mixup.herokuapp.com',
+        code: req.body.token
+    }, function (data, response) {
         // parsed response body as js object 
         res.send(data);
         console.log(data);
