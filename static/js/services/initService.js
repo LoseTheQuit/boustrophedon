@@ -34,7 +34,7 @@ angular.module("initModule")
             .then(callback);
         };
 
-        this.getAuthCode = function () {
+        this.getAuthCode = function (callback) {
 
             $http({
                 method: 'GET',
