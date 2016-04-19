@@ -53,7 +53,7 @@ app.get('/getAuthCode', function (req, res) {
     console.log('INCOMING GET REQUEST - Load Template'.black.bgWhite);
     console.log('************************************'.black.bgWhite);
     var url = 'https://api.instagram.com/oauth/authorize/?client_id=' + instaData.client_id + '&redirect_uri=' + instaData.redirect_uri + '&response_type=code';
-    response.writeHead(302, {
+    res.writeHead(302, {
         Location: encodeURI(url)
     });
 
