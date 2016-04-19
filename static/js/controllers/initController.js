@@ -21,37 +21,36 @@ angular.module("initModule")
             });
         };
 
-        $scope.tapIgApi = function () {
-
-            dataService.tapInsta(function (instagramData, response) {
-
-                // console.info(response.data);
-
-                $scope.instagramData = response.data.link;
-                return response.data.link
-            });
-        };
-
-        $scope.windowInfoWithToken = "as";
 
         $scope.windowInfoWithToken = dataService.getWindowInfo();
 
-        console.info(dataService.getWindowInfo());
+        $scope.tapIgApiCUSTOM = function () {
 
-        dataService.tapInsta(function (windowInfoWithToken, response) {
+            console.info($scope.windowInfoWithToken);
 
-            $scope.instagramData = response.data.link;
-            return response.data.link
+            dataService.tapInsta($scope.windowInfoWithToken, function (response) {
+                console.info('ITS ON BRO');
+
+                console.warn(response.data);
+
+                //    $scope.instagramData = response.data.link;
+
+            });
+
+        };
+
+        dataService.tapInsta($scope.windowInfoWithToken, function (response) {
+            $scope.instagramData = response.data;
 
         });
 
-        //        dataService.tapInsta(function (response) {
-        //
-        //            // console.info(response.data);
-        //
-        //            $scope.instagramData = response.data.link;
-        //            return response.data.link
-        //        });
+        //                dataService.tapInsta(function (response) {
+        //        
+        //                    // console.info(response.data);
+        //        
+        //                    $scope.instagramData = response.data.link;
+        //                    return response.data.link
+        //                });
 
         //        dataService.callApi(function (response) {
         //

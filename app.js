@@ -59,20 +59,29 @@ app.listen(app.get('port'), function () {
 });
 
 app.post('/ig', function (req, res, next) {
-    var ig = require('instagram-node').instagram({});
 
-    ig.use({
-        client_id: 'e272444723924d49bb78da2b5e5c4dfd',
-        client_secret: '95196ee487154c46b9dcb662483aa509'
+    console.log(req.body);
+    console.log(req.body.token);
+
+    res.send({
+        name: "Brendan",
+        token: req.body.token
     });
 
-    var url = 'http://localhost:3000/_oauth/google#access_token=ya29.5HxuYol1Io8JLeGePDznbfkkwu_PC4uodKwG8_1clFYAn9AgdOV1WGpOTNQP3s76HAsn7Y4zWw&token_type=Bearer&expires_in=3600',
-        access_token = url.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1];
-
-    res.json({
-        link: "https://www.instagram.com/oauth/authorize?client_id=b23670e220f14f1c89c11f627c9f9953&redirect_uri=https://the-mixup.herokuapp.com&response_type=code",
-        LINK2: access_token
-    });
+    //    var ig = require('instagram-node').instagram({});
+    //
+    //    ig.use({
+    //        client_id: 'e272444723924d49bb78da2b5e5c4dfd',
+    //        client_secret: '95196ee487154c46b9dcb662483aa509'
+    //    });
+    //
+    //    var url = 'http://localhost:3000/_oauth/google#access_token=ya29.5HxuYol1Io8JLeGePDznbfkkwu_PC4uodKwG8_1clFYAn9AgdOV1WGpOTNQP3s76HAsn7Y4zWw&token_type=Bearer&expires_in=3600',
+    //        access_token = url.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1];
+    //
+    //    res.json({
+    //        link: "https://www.instagram.com/oauth/authorize?client_id=b23670e220f14f1c89c11f627c9f9953&redirect_uri=https://the-mixup.herokuapp.com&response_type=code",
+    //        LINK2: access_token
+    //    });
 
     //    ig.media_popular(function (err, medias, remaining, limit) {
     //        console.log(medias);

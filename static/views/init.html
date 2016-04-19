@@ -13,6 +13,13 @@
         cursor: pointer;
         line-height: 50px;
         display: block;
+        margin-bottom: 25px;
+        color: #fff;
+    }
+    
+    .ghostButton:hover {
+        text-decoration: none;
+        color: #fff;
     }
 </style>
 
@@ -22,11 +29,19 @@
 
             <div>
                 <h1>werkspayce</h1>
+                <p>{{instagramData.name}}</p>
+                <p>{{instagramData.token}}</p>
             </div>
 
-            <a class="ghostButton" href="https://www.instagram.com/oauth/authorize?client_id=b23670e220f14f1c89c11f627c9f9953&redirect_uri=https://the-mixup.herokuapp.com&response_type=code">
+            <a class="ghostButton" href="{{instagramDataLink}}">
                 <center>
                     tap the api
+                </center>
+            </a>
+
+            <a class="ghostButton" ng-click="tapIgApiCUSTOM()">
+                <center>
+                    it's in the middle
                 </center>
             </a>
 
