@@ -29,6 +29,7 @@ angular.module("initModule")
             console.info($scope.windowInfoWithToken);
 
             dataService.tapInsta($scope.windowInfoWithToken, function (response) {
+
                 console.warn(response.data);
 
                 //    $scope.instagramData = response.data.link;
@@ -37,19 +38,27 @@ angular.module("initModule")
 
         };
 
+        $scope.getAuthCode = function () {
+            dataService.getAuthCode(function (response) {
+
+                console.info(response.data);
+
+            });
+        };
+
         dataService.tapInsta($scope.windowInfoWithToken, function (response) {
             $scope.instagramData = response.data;
 
         });
 
-        //                dataService.tapInsta(function (response) {
-        //        
-        //                    // console.info(response.data);
-        //        
-        //                    $scope.instagramData = response.data.link;
-        //                    return response.data.link
-        //                });
-
+        //        dataService.tapInsta(function (response) {
+        //
+        //            // console.info(response.data);
+        //
+        //            $scope.instagramData = response.data.link;
+        //            return response.data.link
+        //        });
+        //
         //        dataService.callApi(function (response) {
         //
         //            console.info(response.data);

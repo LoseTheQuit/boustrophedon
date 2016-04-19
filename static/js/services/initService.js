@@ -34,6 +34,21 @@ angular.module("initModule")
             .then(callback);
         };
 
+        this.getAuthCode = function () {
+
+            $http({
+                method: 'GET',
+                url: '/getAuthCode',
+                data: {
+                    name: "LTQ"
+                }
+            })
+
+            .then(callback);
+
+
+        }
+
         this.getWindowInfo = function () {
 
             var windowLocation = window.location.href;
