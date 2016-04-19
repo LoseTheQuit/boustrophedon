@@ -45,10 +45,6 @@ angular.module("initModule")
             })
 
             .then(callback);
-            //asa
-            //asa
-            //asa
-            //asa
 
         }
 
@@ -59,7 +55,5 @@ angular.module("initModule")
             return windowLocationWithToken;
 
         };
-
-
 
     });
