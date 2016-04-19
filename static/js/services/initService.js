@@ -7,18 +7,19 @@ angular.module("initModule")
 
         console.log("INSIDE dataService");
 
-        this.tapInsta = function (callback) {
+        this.tapInsta = function (access_token, callback) {
 
             $http({
                 method: 'POST',
                 url: '/ig',
                 data: {
-                    name: "LTQ"
+                    token: access_token
                 }
             })
 
             .then(callback);
         }
+
 
         this.callApi = function (callback) {
 
@@ -33,15 +34,14 @@ angular.module("initModule")
             .then(callback);
         };
 
-        this.deleteTodo = function (todo) {
+        this.getWindowInfo = function () {
 
-            console.info('The ' + todo.name + " todo has been delted!")
-        };
-
-        this.saveTodos = function (todo) {
-
-            console.info('The ' + todo.length + " number of todos has been saved!")
+            var windowLocation = window.location.href;
+            var windowLocationWithToken = windowLocation.replace("https://the-mixup.herokuapp.com/?code=", "");
+            return windowLocationWithToken;
 
         };
+
+
 
     });

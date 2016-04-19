@@ -21,11 +21,34 @@ angular.module("initModule")
             });
         };
 
-        var windowLocation = window.location.href;
+        $scope.tapIgApi = function () {
 
-        var windowLocationWithToken = windowLocation.replace("https://the-mixup.herokuapp.com/?code=", "");
+            dataService.tapInsta(function (instagramData, response) {
 
-        console.log(windowLocationWithToken);
+                // console.info(response.data);
+
+                $scope.instagramData = response.data.link;
+                return response.data.link
+            });
+        };
+
+        $scope.windowInfoWithToken = dataService.getWindowInfo();
+
+        dataService.tapInsta(function (instagramData, response) {
+
+            // console.info(response.data);
+
+            $scope.instagramData = response.data.link;
+            return response.data.link
+        });
+
+        //        dataService.tapInsta(function (response) {
+        //
+        //            // console.info(response.data);
+        //
+        //            $scope.instagramData = response.data.link;
+        //            return response.data.link
+        //        });
 
         //        dataService.callApi(function (response) {
         //
