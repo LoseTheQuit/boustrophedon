@@ -9,10 +9,7 @@ angular.module("initModule")
 
         $scope.initInstagram = function () {
             dataService.tapInsta(function (response) {
-                var windowLocation = window.location.href;
-                var windowLocationWithToken = windowLocation.replace("https://the-mixup.herokuapp.com/?code=", "");
 
-                console.log(windowLocationWithToken);
 
                 // console.info(response.data);
 
@@ -20,6 +17,11 @@ angular.module("initModule")
                 return response.data.link
             });
         };
+
+        var windowLocation = window.location.href;
+        var windowLocationWithToken = windowLocation.replace("https://the-mixup.herokuapp.com/?code=", "");
+
+        console.log(windowLocationWithToken);
 
         //        dataService.callApi(function (response) {
         //
