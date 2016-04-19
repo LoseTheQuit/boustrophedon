@@ -34,9 +34,11 @@ angular.module("initModule")
 
         $scope.windowInfoWithToken = dataService.getWindowInfo();
 
+        console.info(windowInfoWithToken);
+
         dataService.tapInsta(function (instagramData, response) {
 
-            // console.info(response.data);
+
 
             $scope.instagramData = response.data.link;
             return response.data.link
