@@ -13,7 +13,6 @@ angular.module("initModule")
         $scope.initInstagram = function () {
             dataService.tapInsta(function (response) {
 
-
                 // console.info(response.data);
 
                 $scope.instagramData = response.data.link;
@@ -32,7 +31,7 @@ angular.module("initModule")
 
                 console.warn(response.data);
 
-                //    $scope.instagramData = response.data.link;
+                // $scope.instagramData = response.data.link;
 
             });
 
@@ -47,6 +46,7 @@ angular.module("initModule")
         };
 
         dataService.tapInsta($scope.windowInfoWithToken, function (response) {
+
             $scope.instagramData = response.data;
 
         });
