@@ -88,7 +88,12 @@ app.listen(app.get('port'), function () {
 let BASE_IG_URL = 'https://api.instagram.com/oauth/access_token';
 let IG_CLIENT_SECRET = '&client_secret=95196ee487154c46b9dcb662483aa509'
 let ds = 'grant_type=authorization_code';
+
 app.post('/ig', function (req, res, next) {
+
+    console.log(req.body);
+    console.log(req.body.token);
+    let ACCESS_TOKEN = req.body.token;
 
     let instaData = {
         client_id: 'b23670e220f14f1c89c11f627c9f9953',
@@ -97,10 +102,6 @@ app.post('/ig', function (req, res, next) {
         redirect_uri: 'https://the-mixup.herokuapp.com',
         code: ACCESS_TOKEN
     }
-
-    console.log(req.body);
-    console.log(req.body.token);
-    let ACCESS_TOKEN = req.body.token;
 
 
     client.post('https://api.instagram.com/oauth/access_token', JSON.stringify(instaData), function (data, response) {
