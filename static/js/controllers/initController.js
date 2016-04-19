@@ -5,6 +5,9 @@ console.log("OUTSIDE initController");
 angular.module("initModule")
     .controller('initController', function ($scope, dataService) {
 
+
+        $scope.instagramDataLink = 'https://www.instagram.com/oauth/authorize?client_id=b23670e220f14f1c89c11f627c9f9953&redirect_uri=https://the-mixup.herokuapp.com&response_type=code';
+
         console.log("INSIDE initController");
 
         $scope.initInstagram = function () {
@@ -20,7 +23,7 @@ angular.module("initModule")
 
         var windowLocation = window.location.href;
 
-        var windowLocationWithToken = windowLocation.replace("https://the-mixup.herokuapp.com/?code=", "asdasd");
+        var windowLocationWithToken = windowLocation.replace("https://the-mixup.herokuapp.com/?code=", "");
 
         console.log(windowLocationWithToken);
 
