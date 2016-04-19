@@ -19,7 +19,8 @@ angular.module("initModule")
         };
 
         var windowLocation = window.location.href;
-        var windowLocationWithToken = windowLocation.replace("https://the-mixup.herokuapp.com/?code=", "");
+
+        var windowLocationWithToken = windowLocation.replace("https://the-mixup.herokuapp.com/?code=", "asdasd");
 
         console.log(windowLocationWithToken);
 
