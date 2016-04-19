@@ -51,9 +51,11 @@ angular.module("initModule")
         this.getWindowInfo = function () {
 
             var windowLocation = window.location.href;
-            var windowLocationWithToken = windowLocation.replace("https://127.0.0.1/?code=", "");
+            var windowLocationWithToken = windowLocation.replace("https://the-mixup.herokuapp.com/?code=", "");
             return windowLocationWithToken;
 
         };
+
+
 
     });
