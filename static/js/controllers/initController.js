@@ -11,7 +11,8 @@ angular.module("initModule")
             dataService.tapInsta(function (response) {
                 var windowLocation = window.location.href;
                 var windowLocationWithToken = windowLocation.replace("https://the-mixup.herokuapp.com/?code=", "");
-                console.log(window.location.href);
+
+                console.log(windowLocationWithToken);
                 //                console.info(response.data);
                 $scope.instagramData = response.data.link;
                 return response.data.link
