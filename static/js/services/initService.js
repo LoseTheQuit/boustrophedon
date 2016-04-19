@@ -45,14 +45,17 @@ angular.module("initModule")
             })
 
             .then(callback);
-
+            //asa
+            //asa
+            //asa
+            //asa
 
         }
 
         this.getWindowInfo = function () {
 
             var windowLocation = window.location.href;
-            var windowLocationWithToken = windowLocation.replace("https://the-mixup.herokuapp.com/?code=", "");
+            var windowLocationWithToken = windowLocation.replace("https://127.0.0.1/?code=", "");
             return windowLocationWithToken;
 
         };
