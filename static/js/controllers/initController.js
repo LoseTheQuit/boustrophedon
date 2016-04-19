@@ -13,7 +13,9 @@ angular.module("initModule")
                 var windowLocationWithToken = windowLocation.replace("https://the-mixup.herokuapp.com/?code=", "");
 
                 console.log(windowLocationWithToken);
-                //                console.info(response.data);
+
+                // console.info(response.data);
+
                 $scope.instagramData = response.data.link;
                 return response.data.link
             });
