@@ -52,7 +52,11 @@ app.get('/getAuthCode', function (req, res) {
     console.log('************************************'.black.bgWhite);
     console.log('INCOMING GET REQUEST - Load Template'.black.bgWhite);
     console.log('************************************'.black.bgWhite);
-    var url = 'https://api.instagram.com/oauth/authorize/?client_id=' + instaData.client_id + '&redirect_uri=' + instaData.redirect_uri + '&response_type=code'
+    var url = 'https://api.instagram.com/oauth/authorize/?client_id=' + instaData.client_id + '&redirect_uri=' + instaData.redirect_uri + '&response_type=code';
+    res.writeHead(301, {
+        Location: (req.socket.encrypted ? 'https://' : 'http://') +
+            req.headers.host + url
+    });
     res.redirect(url);
 
 });
