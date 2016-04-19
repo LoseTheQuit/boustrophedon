@@ -7,11 +7,18 @@ angular.module("initModule")
 
         console.log("INSIDE dataService");
 
-        this.helloConsole = function () {
+        this.tapInsta = function (callback) {
 
-            console.info("This is inside the dataService method - service method");
+            $http({
+                method: 'POST',
+                url: '/ig',
+                data: {
+                    name: "LTQ"
+                }
+            })
 
-        };
+            .then(callback);
+        }
 
         this.callApi = function (callback) {
 

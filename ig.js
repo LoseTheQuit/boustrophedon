@@ -12,9 +12,12 @@ api.use({
     client_secret: '95196ee487154c46b9dcb662483aa509'
 });
 
+let oAuthLink = "https://www.instagram.com/oauth/authorize?client_id=b23670e220f14f1c89c11f627c9f9953&redirect_uri=https://the-mixup.herokuapp.com&response_type=code";
 
-let asd = "https://www.instagram.com/oauth/authorize?client_id=e272444723924d49bb78da2b5e5c4dfd&redirect_uri=https://losethequit.herokuapp.com/views/mashupShell.html/handleauth&response_type=code";
+
 let theEnding = '&state=a+state&scope=likes';
+
+
 var redirect_uri = 'https://losethequit.herokuapp.com/';
 
 exports.authorize_user = function (req, res) {
