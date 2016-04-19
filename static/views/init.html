@@ -1,9 +1,12 @@
+<link href='https://fonts.googleapis.com/css?family=Gudea:400,400italic' rel='stylesheet' type='text/css'>
 <style>
     body {
         width: 99%;
         height: 99%;
         background: #00a3e0;
         color: #fff;
+        font-family: 'Gudea', sans-serif;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, .25);
     }
     
     .ghostButton {
@@ -15,11 +18,25 @@
         display: block;
         margin-bottom: 25px;
         color: #fff;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+        text-shadow: 0 1px 3px rgba(0, 0, 0, .25);
     }
     
     .ghostButton:hover {
         text-decoration: none;
         color: #fff;
+    }
+    
+    .theWhiteLine {
+        width: 90%;
+        margin-bottom: 50px;
+        float: left;
+        background: #fff;
+        height: 3px;
+    }
+    
+    .clearFloat {
+        clear: both;
     }
 </style>
 
@@ -31,6 +48,8 @@
                 <h1>werkspayce</h1>
 
             </div>
+            <div class="theWhiteLine"></div>
+            <div class="clearFloat"></div>
             <div>
                 <p>{{windowInfoWithToken}}</p>
             </div>
