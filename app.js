@@ -140,11 +140,11 @@ app.post('/ig', function (req, res, next) {
 
         console.log(response.statusCode);
         console.log(response.body);
-        res.send(response.body);
+        // res.send(response.body);
 
         if (error || response.statusCode != 200) {
             console.error(error);
-
+            res.send(error);
             //  console.error(error);
         } else {
             var pbody = JSON.parse(body);
@@ -162,9 +162,11 @@ app.post('/ig', function (req, res, next) {
                     console.error(error);
                     console.error(error);
                     console.error(error);
+                    res.send(error);
                 } else {
                     var jsonobjArr = JSON.parse(body);
                     console.log(jsonobjArr);
+                    res.send(jsonobjArr);
                 }
             });
 
