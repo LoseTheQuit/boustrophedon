@@ -135,21 +135,17 @@ app.post('/ig', function (req, res, next) {
         form: post_data
     };
 
+
     request(post_options, function (error, response, body) {
 
-        console.log(response.body)
-        console.log(response.body)
-        console.log(response.body)
-        console.log(response.body)
-        console.log(response.body)
-        console.log(response.body)
-        console.log(response.statusCode)
+        console.log(response.statusCode);
+        console.log(response.body);
         res.send(response.body);
 
         if (error || response.statusCode != 200) {
             console.error(error);
 
-            //            console.error(error);
+            //  console.error(error);
         } else {
             var pbody = JSON.parse(body);
             console.log('Response: ' + pbody);
@@ -158,6 +154,7 @@ app.post('/ig', function (req, res, next) {
                 url: 'https://api.instagram.com/v1/tags/MYTAG/media/recent?access_token=' + pbody.access_token,
                 method: 'GET'
             };
+
             request(options, function (error, response, body) {
                 if (error && response.statusCode != 200) {
                     console.error(error);
@@ -175,22 +172,16 @@ app.post('/ig', function (req, res, next) {
     });
 
 
+
+
+
+
 });
 
 
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 
-//  client.post('https://api.instagram.com/oauth/access_token', post_options, function (data, response) {
-//        // parsed response body as js object 
-//
-//        res.send(data);
-//        //        console.log(data);
-//
-//        // raw response 
-//        // console.log(response);
-//
-//    });
 
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
