@@ -106,17 +106,8 @@ app.post('/ig', function (req, res, next) {
 
     let ACCESS_TOKEN = req.body.token;
 
-
-    //        
-    //        curl -F 'client_id=b23670e220f14f1c89c11f627c9f9953' \
-    //        -F 'client_secret=dd78c7ffbadd4a10a49f24675356c4d2' \
-    //        -F 'grant_type=authorization_code' \ 
-    //        -F 'redirect_uri=https://the-mixup.herokuapp.com' \
-    //        -F 'code=CODE' \
-    //        https://api.instagram.com/oauth/access_token
-
-    var request = require('request');
-    var post_data = {
+    let request = require('request');
+    let post_data = {
         'client_id': client_id,
         'client_secret': client_secret,
         'grant_type': 'authorization_code',
@@ -251,6 +242,8 @@ app.get('/handleauth', function (req, res) {
     }
 });
 
-https.createServer(app).listen(4000, function () {
-    console.log("HTTPS Express Instagram server listening on port " + 4000);
-});
+//
+//
+//https.createServer(app).listen(4000, function () {
+//    console.log("HTTPS Express Instagram server listening on port " + 4000);
+//});

@@ -7,8 +7,6 @@ angular.module("initModule")
 
         console.log("INSIDE initController");
 
-
-
         $scope.instagramDataLink = 'https://www.instagram.com/oauth/authorize?client_id=b23670e220f14f1c89c11f627c9f9953&redirect_uri=https://the-mixup.herokuapp.com&response_type=code';
 
         $scope.windowInfoWithToken = dataService.getWindowInfo();
