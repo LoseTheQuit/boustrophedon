@@ -33,7 +33,16 @@ angular.module("initModule")
 
         dataService.tapInsta($scope.windowInfoWithToken, function (response) {
 
+
+
             $scope.instagramData = response.data;
+
+            if (!response.data.access_token == undefined) {
+
+                $scope.instagramDataWithToken = response.data.access_token;
+            }
+
+
             console.info(response.data);
         });
 
