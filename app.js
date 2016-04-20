@@ -37,8 +37,6 @@ app.use(express.static(__dirname + 'conn'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.use(express.static('conn'));
 
-app.set('port', (process.env.PORT || 5000));
-
 app.get('/', function (req, res) {
 
     console.log('\n');
@@ -70,21 +68,7 @@ app.get('/authorize_user', function (req, res) {
 
 });
 
-app.post('/', function (req, res) {
-
-    console.log('\n');
-    console.log('*********************'.black.bgWhite);
-    console.log('INCOMING POST REQUEST'.black.bgWhite);
-    console.log('*********************'.black.bgWhite);
-    console.log('\n');
-    console.log(req.body);
-
-    res.send({
-        name: "brendan",
-        age: "28"
-    });
-
-});
+app.set('port', (process.env.PORT || 5000));
 
 app.listen(app.get('port'), function () {
 
@@ -108,7 +92,7 @@ app.post('/ig', function (req, res, next) {
         'client_id': client_id,
         'client_secret': client_secret,
         'grant_type': 'authorization_code',
-        'redirect_uri': redirect_uri,
+        'redirect_uri': 'http://127.0.0.1:5000',
         'code': ACCESS_TOKEN
     };
 
