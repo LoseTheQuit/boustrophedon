@@ -122,20 +122,23 @@ app.post('/ig', function (req, res, next) {
                 url: 'https://api.instagram.com/v1/media/popular?access_token=' + parsedBody.access_token,
                 method: 'GET'
             };
+            var from_SO_search = {
+                url: 'https://api.instagram.com/v1/tags/res/media/recent?client_id=' + client_id + '&callback=' +
+                    redirect_uri + '&access_token=' + parsedBody.access_token,
+                method: 'GET'
+            }
 
-
-            request(media_search, function (error, response, body) {
+            request(popular_tag_search, function (error, response, body) {
                 if (error && response.statusCode != 200) {
                     console.error(error);
                 } else {
                     var jsonobjArr = JSON.parse(body);
                     console.log('*******************************************************'.black.bgGreen);
-                    console.log(jsonobjArr);
+                    // console.log(jsonobjArr);
                     console.log('*******************************************************'.black.bgGreen);
                     res.send(jsonobjArr);
                 }
             });
-
         }
     });
 
