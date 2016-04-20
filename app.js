@@ -102,12 +102,7 @@ app.listen(app.get('port'), function () {
 
 app.post('/ig', function (req, res, next) {
 
-    console.log(req.body);
-    console.log(req.body);
-    console.log(req.body);
-    console.log(req.body);
-
-    console.log(req.body.token);
+    console.log('TOKEN: ' + req.body.token);
 
     let ACCESS_TOKEN = req.body.token;
 
