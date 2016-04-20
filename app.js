@@ -92,7 +92,7 @@ app.post('/ig', function (req, res, next) {
         'client_id': client_id,
         'client_secret': client_secret,
         'grant_type': 'authorization_code',
-        'redirect_uri': 'http://127.0.0.1:5000',
+        'redirect_uri': redirect_uri,
         'code': ACCESS_TOKEN
     };
 
