@@ -15,12 +15,6 @@ let client_secret = "dd78c7ffbadd4a10a49f24675356c4d2";
 let redirect_uri = 'http://127.0.0.1:5000';
 var authorize_link = 'https://api.instagram.com/oauth/authorize/?client_id=' + client_id + '&redirect_uri=' + redirect_uri + '&response_type=code';
 
-//let instaData = {
-//    client_id: 'b23670e220f14f1c89c11f627c9f9953',
-//    client_secret: 'dd78c7ffbadd4a10a49f24675356c4d2',
-//    grant_type: 'authorization_code',
-//    redirect_uri: 'https://the-mixup.herokuapp.com'
-//} 
 
 console.log(sum(5, 2));
 
@@ -46,16 +40,6 @@ app.get('/', function (req, res) {
 
 });
 
-//app.get('/getAuthCode', function (req, res) {
-//
-//
-//    var url = 'https://api.instagram.com/oauth/authorize/?client_id=' + instaData.client_id + '&redirect_uri=' + instaData.redirect_uri + '&response_type=code';
-//    res.writeHead(302, {
-//        Location: encodeURI(url)
-//    });
-//
-//});
-
 app.get('/authorize_user', function (req, res) {
 
     console.log('\n');
@@ -80,9 +64,11 @@ app.listen(app.get('port'), function () {
 
 app.post('/ig', function (req, res, next) {
 
-    console.log('TOKEN: ' + req.body.token);
+    console.log('\n');
+    console.log('*******************************************************'.black.bgGreen);
+    console.log('ACCESS_CODE: ' + req.body.token);
 
-    let ACCESS_TOKEN = req.body.token;
+    let ACCESS_CODE = req.body.token;
 
     let request = require('request');
 
@@ -91,7 +77,7 @@ app.post('/ig', function (req, res, next) {
         'client_secret': client_secret,
         'grant_type': 'authorization_code',
         'redirect_uri': redirect_uri,
-        'code': ACCESS_TOKEN
+        'code': ACCESS_CODE
     };
 
     var headers = {
@@ -106,27 +92,39 @@ app.post('/ig', function (req, res, next) {
         form: post_data
     };
 
+
     request(post_options, function (error, response, body) {
 
         var parsedBody = JSON.parse(body);
         console.log('*******************************************************'.black.bgGreen);
         console.log(parsedBody);
         console.log('*******************************************************'.black.bgGreen);
-        res.send(parsedBody);
-
 
         if (response.statusCode != 200) {
             console.error(error);
         } else {
 
-            console.log('Response: ' + parsedBody);
-            console.log('parsedBody.access_token: ' + parsedBody.access_token);
-            var options = {
-                url: 'https://api.instagram.com/v1/tags/nofilter/media/recent?access_token=' + parsedBody.access_token,
+            console.log('ACCESS_TOKEN: ' + parsedBody.access_token);
+
+            var self_search = {
+                url: 'https://api.instagram.com/v1/users/self/media/recent/?access_token=' + parsedBody.access_token,
+                method: 'GET'
+            };
+            var media_search = {
+                url: 'https://api.instagram.com/v1/media/search?lat=48.858844&lng=2.294351&access_token=' + parsedBody.access_token,
+                method: 'GET'
+            };
+            var popular_tag_search = {
+                url: 'https://api.instagram.com/v1/tags/search?q=red&access_token=' + parsedBody.access_token,
+                method: 'GET'
+            };
+            var popular_media_search = {
+                url: 'https://api.instagram.com/v1/media/popular?access_token=' + parsedBody.access_token,
                 method: 'GET'
             };
 
-            request(options, function (error, response, body) {
+
+            request(media_search, function (error, response, body) {
                 if (error && response.statusCode != 200) {
                     console.error(error);
                 } else {
@@ -134,9 +132,11 @@ app.post('/ig', function (req, res, next) {
                     console.log('*******************************************************'.black.bgGreen);
                     console.log(jsonobjArr);
                     console.log('*******************************************************'.black.bgGreen);
+                    res.send(jsonobjArr);
                 }
             });
 
         }
     });
+
 });
