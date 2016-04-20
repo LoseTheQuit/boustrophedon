@@ -6,7 +6,7 @@
         background: #00a3e0;
         color: #fff;
         font-family: 'Gudea', sans-serif;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+        text-shadow: 0 10px 30px rgba(0, 0, 0, .25);
     }
     
     .ghostButton {
@@ -33,6 +33,7 @@
         float: left;
         background: #fff;
         height: 3px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
     }
     
     .clearFloat {
@@ -50,9 +51,7 @@
             </div>
             <div class="theWhiteLine"></div>
             <div class="clearFloat"></div>
-            <div>
-                <p>{{windowInfoWithToken}}</p>
-            </div>
+
 
             <a class="ghostButton" href="{{instagramDataLink}}">
                 <center>
@@ -69,12 +68,22 @@
                     Ping Api
                 </center>
             </a>
-            <div>
-                <p>{{instagramData}}</p>
+            <div class="col-md-4">
+
+                <h3>Data:</h3>
+                <p>{{windowInfoWithToken}}</p>
+
+            </div>
+            <div class="col-md-4">
+
+                <h3>Error:</h3>
                 <p>{{instagramData.code}}</p>
                 <p>{{instagramData.error_type}}</p>
                 <p>{{instagramData.error_message}}</p>
+
             </div>
+            <div class="col-md-4"></div>
+
         </div>
     </div>
 </div>
