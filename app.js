@@ -24,7 +24,6 @@ let instaData = {
     redirect_uri: 'https://the-mixup.herokuapp.com'
 }
 
-
 console.log(sum(5, 2));
 
 app.use(bodyParser.urlencoded({
