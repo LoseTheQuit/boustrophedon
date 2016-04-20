@@ -20,21 +20,7 @@ angular.module("initModule")
             .then(callback);
         }
 
-
-        this.callApi = function (callback) {
-
-            $http({
-                method: 'POST',
-                url: '/ig',
-                data: {
-                    name: "LTQ"
-                }
-            })
-
-            .then(callback);
-        };
-
-        this.getAuthCode = function (callback) {
+        this.getHandleAuth = function (callback) {
 
 
             $http({

@@ -37,10 +37,10 @@ angular.module("initModule")
 
         };
 
-        $scope.getAuthCode = function () {
-            dataService.getAuthCode(function (response) {
+        $scope.getHandleAuth = function () {
+            dataService.getHandleAuth(function (response) {
 
-                console.info(response.data);
+                // console.info(response.data);
 
             });
         };
@@ -48,22 +48,8 @@ angular.module("initModule")
         dataService.tapInsta($scope.windowInfoWithToken, function (response) {
 
             $scope.instagramData = response.data;
-            console.info(response.data);
+            //            console.info(response.data);
         });
 
-        dataService.tapInsta(function (response) {
-
-            console.info(response.data);
-
-            $scope.instagramData = response.data.link;
-            return response.data.link
-        });
-
-        dataService.callApi(function (response) {
-
-            console.info(response.data);
-            $scope.todos = response.data;
-
-        });
 
     });

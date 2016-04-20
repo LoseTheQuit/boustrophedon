@@ -147,6 +147,10 @@ app.post('/ig', function (req, res, next) {
 
         if (error || response.statusCode != 200) {
             console.error(error);
+            console.error(error);
+            console.error(error);
+            //            console.error(error);
+            res.send(error);
         } else {
             var pbody = JSON.parse(body);
             console.log('Response: ' + pbody);
@@ -157,6 +161,10 @@ app.post('/ig', function (req, res, next) {
             };
             request(options, function (error, response, body) {
                 if (error && response.statusCode != 200) {
+                    console.error(error);
+                    console.error(error);
+                    console.error(error);
+                    console.error(error);
                     console.error(error);
                 } else {
                     var jsonobjArr = JSON.parse(body);
