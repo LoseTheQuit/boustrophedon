@@ -17,12 +17,12 @@ let client_secret = "dd78c7ffbadd4a10a49f24675356c4d2";
 let redirect_uri = 'http://127.0.0.1:5000';
 var authorize_link = 'https://api.instagram.com/oauth/authorize/?client_id=' + client_id + '&redirect_uri=' + redirect_uri + '&response_type=code';
 
-let instaData = {
-    client_id: 'b23670e220f14f1c89c11f627c9f9953',
-    client_secret: 'dd78c7ffbadd4a10a49f24675356c4d2',
-    grant_type: 'authorization_code',
-    redirect_uri: 'https://the-mixup.herokuapp.com'
-}
+//let instaData = {
+//    client_id: 'b23670e220f14f1c89c11f627c9f9953',
+//    client_secret: 'dd78c7ffbadd4a10a49f24675356c4d2',
+//    grant_type: 'authorization_code',
+//    redirect_uri: 'https://the-mixup.herokuapp.com'
+//} 
 
 console.log(sum(5, 2));
 
@@ -50,15 +50,15 @@ app.get('/', function (req, res) {
 
 });
 
-app.get('/getAuthCode', function (req, res) {
-
-
-    var url = 'https://api.instagram.com/oauth/authorize/?client_id=' + instaData.client_id + '&redirect_uri=' + instaData.redirect_uri + '&response_type=code';
-    res.writeHead(302, {
-        Location: encodeURI(url)
-    });
-
-});
+//app.get('/getAuthCode', function (req, res) {
+//
+//
+//    var url = 'https://api.instagram.com/oauth/authorize/?client_id=' + instaData.client_id + '&redirect_uri=' + instaData.redirect_uri + '&response_type=code';
+//    res.writeHead(302, {
+//        Location: encodeURI(url)
+//    });
+//
+//});
 
 app.get('/authorize_user', function (req, res) {
 
@@ -103,6 +103,7 @@ app.post('/ig', function (req, res, next) {
     let ACCESS_TOKEN = req.body.token;
 
     let request = require('request');
+
     let post_data = {
         'client_id': client_id,
         'client_secret': client_secret,
@@ -110,10 +111,11 @@ app.post('/ig', function (req, res, next) {
         'redirect_uri': redirect_uri,
         'code': ACCESS_TOKEN
     };
+
     var headers = {
         'User-Agent': 'Super Agent/0.0.1',
         'Content-Type': 'application/x-www-form-urlencoded'
-    }
+    };
 
     var post_options = {
         url: 'https://api.instagram.com/oauth/access_token',
@@ -121,7 +123,6 @@ app.post('/ig', function (req, res, next) {
         headers: headers,
         form: post_data
     };
-
 
     request(post_options, function (error, response, body) {
 
