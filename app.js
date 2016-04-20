@@ -161,3 +161,61 @@ app.post('/ig', function (req, res, next) {
     });
 
 });
+
+
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+
+
+app.get('/handleauth', function (req, res) {
+    res.send("ok");
+
+    if (req.query['code']) {
+        var request = require('request');
+        var post_data = {
+            'client_id': client_id,
+            'client_secret': client_secret,
+            'grant_type': 'authorization_code',
+            'redirect_uri': redirect_uri,
+            'code': req.query['code']
+        };
+        var headers = {
+            'User-Agent': 'Super Agent/0.0.1',
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+
+        var post_options = {
+            url: 'https://api.instagram.com/oauth/access_token',
+            method: 'POST',
+            headers: headers,
+            form: post_data
+        };
+        request(post_options, function (error, response, body) {
+            if (error || response.statusCode != 200) {
+                console.error(error);
+            } else {
+                var pbody = JSON.parse(body);
+                console.log('Response: ' + pbody);
+                console.log('pbody.access_token: ' + pbody.access_token);
+                var options = {
+                    url: 'https://api.instagram.com/v1/tags/MYTAG/media/recent?access_token=' + pbody.access_token,
+                    method: 'GET'
+                };
+                request(options, function (error, response, body) {
+                    if (error && response.statusCode != 200) {
+                        console.error(error);
+                    } else {
+                        var jsonobjArr = JSON.parse(body);
+                        console.log(jsonobjArr);
+                    }
+                });
+
+            }
+        });
+
+    }
+});

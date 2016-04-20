@@ -38,13 +38,12 @@ angular.module("initModule")
 
             $http({
                 method: 'GET',
-                url: '/getAuthCode',
+                url: '/authorize_user',
+                dataType: 'jsonp',
                 data: {
                     name: "LTQ"
                 }
-            })
-
-            .then(callback);
+            });
 
         }
 
