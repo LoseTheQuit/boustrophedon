@@ -39,6 +39,10 @@
     .clearFloat {
         clear: both;
     }
+    
+    .responseBox {
+        overflow: hidden;
+    }
 </style>
 
 <div class="bodyWrapper">
@@ -54,30 +58,28 @@
 
             <a class="ghostButton" href="{{instagramDataLink}}">
                 <center>
-                    tap the api
+                    login
                 </center>
             </a>
-            <a class="ghostButton" ng-click="getHandleAuth()">
-                <center>
-                    getAuthCode redirect window
-                </center>
-            </a>
+
             <a class="ghostButton" ng-click="tapIgApiCUSTOM()">
                 <center>
                     Ping Api
                 </center>
             </a>
-            <div class="col-md-6">
+
+            <div class="responseBox col-md-6">
 
                 <h3>Data:</h3>
                 <div class="theWhiteLine"></div>
                 <div class="clearFloat"></div>
                 <p>{{windowInfoWithToken}}</p>
-                <p>{{instagramDataWithToken[0]}}</p>
-                <p>{{instagramDataWithToken[1]}}</p>
+                <p>{{instagramData.access_token}}</p>
+                <p>{{instagramData.user}}</p>
 
             </div>
-            <div class="col-md-6">
+
+            <div class="responseBox col-md-6">
 
                 <h3>Error:</h3>
                 <div class="theWhiteLine"></div>

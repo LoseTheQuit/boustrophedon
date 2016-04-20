@@ -6,11 +6,9 @@ let fs = require('fs'),
     app = express(),
     bodyParser = require('body-parser'),
     tools = require('./tools.js')(),
-    Client = require('node-rest-client').Client,
     https = require('https'),
     http = require('http');
 
-var client = new Client();
 
 let client_id = "b23670e220f14f1c89c11f627c9f9953";
 let client_secret = "dd78c7ffbadd4a10a49f24675356c4d2";
@@ -110,121 +108,35 @@ app.post('/ig', function (req, res, next) {
 
     request(post_options, function (error, response, body) {
 
-        console.log(response.statusCode);
-        console.log(response.body);
-        res.send(response.body);
+        var parsedBody = JSON.parse(body);
+        console.log('*******************************************************'.black.bgGreen);
+        console.log(parsedBody);
+        console.log('*******************************************************'.black.bgGreen);
+        res.send(parsedBody);
+
 
         if (response.statusCode != 200) {
             console.error(error);
         } else {
-            var pbody = JSON.parse(body);
-            console.log('Response: ' + pbody);
-            console.log('pbody.access_token: ' + pbody.access_token);
+
+            console.log('Response: ' + parsedBody);
+            console.log('parsedBody.access_token: ' + parsedBody.access_token);
             var options = {
-                url: 'https://api.instagram.com/v1/tags/MYTAG/media/recent?access_token=' + pbody.access_token,
+                url: 'https://api.instagram.com/v1/tags/nofilter/media/recent?access_token=' + parsedBody.access_token,
                 method: 'GET'
             };
 
             request(options, function (error, response, body) {
                 if (error && response.statusCode != 200) {
                     console.error(error);
-                    console.error(error);
-                    console.error(error);
-                    console.error(error);
-                    console.error(error);
                 } else {
                     var jsonobjArr = JSON.parse(body);
+                    console.log('*******************************************************'.black.bgGreen);
                     console.log(jsonobjArr);
-
+                    console.log('*******************************************************'.black.bgGreen);
                 }
             });
 
         }
     });
-
-
-
-
-
-
 });
-
-
-///////////////////////////////////////////////////
-///////////////////////////////////////////////////
-
-
-///////////////////////////////////////////////////
-///////////////////////////////////////////////////
-
-
-app.get('/handleauth', function (req, res) {
-    res.send("ok");
-
-    for (let key in req.body) {
-
-        console.log('KEY  ' + key)
-        console.log('DATA ' + req.query[key])
-
-    }
-
-    if (!req.query['code']) {
-
-        var request = require('request');
-        var post_data = {
-            'client_id': client_id,
-            'client_secret': client_secret,
-            'grant_type': 'authorization_code',
-            'redirect_uri': redirect_uri,
-            'code': req.query['code']
-        };
-        var headers = {
-            'User-Agent': 'Super Agent/0.0.1',
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-
-        var post_options = {
-            url: 'https://api.instagram.com/oauth/access_token',
-            method: 'POST',
-            headers: headers,
-            form: post_data
-        };
-
-        //console.log(post_options)
-
-
-        request(post_options, function (error, response, body) {
-
-            console.log(response.body)
-            console.log(response.statusCode)
-
-            if (error || response.statusCode != 200) {
-                console.error(error);
-            } else {
-                var pbody = JSON.parse(body);
-                console.log('Response: ' + pbody);
-                console.log('pbody.access_token: ' + pbody.access_token);
-                var options = {
-                    url: 'https://api.instagram.com/v1/tags/MYTAG/media/recent?access_token=' + pbody.access_token,
-                    method: 'GET'
-                };
-                request(options, function (error, response, body) {
-                    if (error && response.statusCode != 200) {
-                        console.error(error);
-                    } else {
-                        var jsonobjArr = JSON.parse(body);
-                        console.log(jsonobjArr);
-                    }
-                });
-
-            }
-        });
-
-    }
-});
-
-//
-//
-//https.createServer(app).listen(4000, function () {
-//    console.log("HTTPS Express Instagram server listening on port " + 4000);
-//});
