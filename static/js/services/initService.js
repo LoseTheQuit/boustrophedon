@@ -36,14 +36,16 @@ angular.module("initModule")
 
         this.getAuthCode = function (callback) {
 
+
             $http({
                 method: 'GET',
-                url: '/authorize_user',
-                dataType: 'jsonp',
+                url: '/handleauth',
                 data: {
                     name: "LTQ"
                 }
-            });
+            })
+
+            .then(callback);
 
         }
 

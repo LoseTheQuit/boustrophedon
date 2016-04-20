@@ -17,7 +17,6 @@ var client = new Client();
 
 let client_id = "b23670e220f14f1c89c11f627c9f9953";
 let client_secret = "dd78c7ffbadd4a10a49f24675356c4d2";
-
 let redirect_uri = 'https://the-mixup.herokuapp.com/handleauth';
 var authorize_link = 'https://api.instagram.com/oauth/authorize/?client_id=' + client_id + '&redirect_uri=' + redirect_uri + '&response_type=code';
 
@@ -65,8 +64,6 @@ app.get('/getAuthCode', function (req, res) {
 
 });
 
-
-
 app.get('/authorize_user', function (req, res) {
 
     console.log('\n');
@@ -103,43 +100,17 @@ app.listen(app.get('port'), function () {
 
 });
 
-
-let BASE_IG_URL = 'https://api.instagram.com/oauth/access_token';
-let IG_CLIENT_SECRET = '&client_secret=95196ee487154c46b9dcb662483aa509'
-let ds = 'grant_type=authorization_code';
-
 app.post('/ig', function (req, res, next) {
 
     console.log(req.body);
+    console.log(req.body);
+    console.log(req.body);
+    console.log(req.body);
+
     console.log(req.body.token);
+
     let ACCESS_TOKEN = req.body.token;
 
-
-    var url = 'https://api.instagram.com/oauth/access_token';
-
-    let data = {
-        'url': url,
-        'client_id': 'CLIENT-ID',
-        'client_secret': 'CLIENT-SECRET',
-        'grant_type': 'authorization_code',
-        'redirect_uri': 'YOUR-REDIRECT-URI',
-        'code': req.query.code
-    };
-
-
-    let instaData = {
-        'url': url,
-        'client_id': 'b23670e220f14f1c89c11f627c9f9953',
-        'client_secret': 'dd78c7ffbadd4a10a49f24675356c4d2',
-        'grant_type': 'authorization_code',
-        'redirect_uri': 'https://the-mixup.herokuapp.com',
-        'code': req.body.token
-    }
-
-    let wayToGo = {
-        name: 'fakeName',
-        romeo: 'Juliet'
-    }
 
     //        
     //        curl -F 'client_id=b23670e220f14f1c89c11f627c9f9953' \
@@ -149,24 +120,71 @@ app.post('/ig', function (req, res, next) {
     //        -F 'code=CODE' \
     //        https://api.instagram.com/oauth/access_token
 
+    var request = require('request');
+    var post_data = {
+        'client_id': client_id,
+        'client_secret': client_secret,
+        'grant_type': 'authorization_code',
+        'redirect_uri': redirect_uri,
+        'code': ACCESS_TOKEN
+    };
+    var headers = {
+        'User-Agent': 'Super Agent/0.0.1',
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
 
-    client.post('https://api.instagram.com/oauth/access_token', wayToGo, function (data, response) {
-        // parsed response body as js object 
-        res.send(data);
-        console.log(data);
+    var post_options = {
+        url: 'https://api.instagram.com/oauth/access_token',
+        method: 'POST',
+        headers: headers,
+        form: post_data
+    };
 
-        // raw response 
-        // console.log(response);
+    request(post_options, function (error, response, body) {
 
+        console.log(response.body)
+        console.log(response.statusCode)
+
+        if (error || response.statusCode != 200) {
+            console.error(error);
+        } else {
+            var pbody = JSON.parse(body);
+            console.log('Response: ' + pbody);
+            console.log('pbody.access_token: ' + pbody.access_token);
+            var options = {
+                url: 'https://api.instagram.com/v1/tags/MYTAG/media/recent?access_token=' + pbody.access_token,
+                method: 'GET'
+            };
+            request(options, function (error, response, body) {
+                if (error && response.statusCode != 200) {
+                    console.error(error);
+                } else {
+                    var jsonobjArr = JSON.parse(body);
+                    console.log(jsonobjArr);
+                }
+            });
+
+        }
     });
+
 
 });
 
 
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
-///////////////////////////////////////////////////
-///////////////////////////////////////////////////
+
+//  client.post('https://api.instagram.com/oauth/access_token', post_options, function (data, response) {
+//        // parsed response body as js object 
+//
+//        res.send(data);
+//        //        console.log(data);
+//
+//        // raw response 
+//        // console.log(response);
+//
+//    });
+
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 
@@ -174,7 +192,15 @@ app.post('/ig', function (req, res, next) {
 app.get('/handleauth', function (req, res) {
     res.send("ok");
 
-    if (req.query['code']) {
+    for (let key in req.body) {
+
+        console.log('KEY  ' + key)
+        console.log('DATA ' + req.query[key])
+
+    }
+
+    if (!req.query['code']) {
+
         var request = require('request');
         var post_data = {
             'client_id': client_id,
@@ -194,7 +220,15 @@ app.get('/handleauth', function (req, res) {
             headers: headers,
             form: post_data
         };
+
+        //console.log(post_options)
+
+
         request(post_options, function (error, response, body) {
+
+            console.log(response.body)
+            console.log(response.statusCode)
+
             if (error || response.statusCode != 200) {
                 console.error(error);
             } else {
@@ -218,4 +252,8 @@ app.get('/handleauth', function (req, res) {
         });
 
     }
+});
+
+https.createServer(app).listen(4000, function () {
+    console.log("HTTPS Express Instagram server listening on port " + 4000);
 });

@@ -13,7 +13,7 @@ angular.module("initModule")
         $scope.initInstagram = function () {
             dataService.tapInsta(function (response) {
 
-                // console.info(response.data);
+                console.info(response.data);
 
                 $scope.instagramData = response.data.link;
                 return response.data.link
@@ -48,22 +48,22 @@ angular.module("initModule")
         dataService.tapInsta($scope.windowInfoWithToken, function (response) {
 
             $scope.instagramData = response.data;
-
+            console.info(response.data);
         });
 
-        //        dataService.tapInsta(function (response) {
-        //
-        //            // console.info(response.data);
-        //
-        //            $scope.instagramData = response.data.link;
-        //            return response.data.link
-        //        });
-        //
-        //        dataService.callApi(function (response) {
-        //
-        //            console.info(response.data);
-        //            $scope.todos = response.data;
-        //
-        //        });
+        dataService.tapInsta(function (response) {
+
+            console.info(response.data);
+
+            $scope.instagramData = response.data.link;
+            return response.data.link
+        });
+
+        dataService.callApi(function (response) {
+
+            console.info(response.data);
+            $scope.todos = response.data;
+
+        });
 
     });
