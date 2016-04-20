@@ -143,14 +143,18 @@ app.post('/ig', function (req, res, next) {
     request(post_options, function (error, response, body) {
 
         console.log(response.body)
+        console.log(response.body)
+        console.log(response.body)
+        console.log(response.body)
+        console.log(response.body)
+        console.log(response.body)
         console.log(response.statusCode)
-
+        res.send(response.body);
         if (error || response.statusCode != 200) {
             console.error(error);
-            console.error(error);
-            console.error(error);
+
             //            console.error(error);
-            res.send(error);
+
         } else {
             var pbody = JSON.parse(body);
             console.log('Response: ' + pbody);

@@ -10,22 +10,9 @@ angular.module("initModule")
 
         console.log("INSIDE initController");
 
-        $scope.initInstagram = function () {
-            dataService.tapInsta(function (response) {
-
-                console.info(response.data);
-
-                $scope.instagramData = response.data.link;
-                return response.data.link
-            });
-        };
-
-
         $scope.windowInfoWithToken = dataService.getWindowInfo();
 
         $scope.tapIgApiCUSTOM = function () {
-
-            console.info($scope.windowInfoWithToken);
 
             dataService.tapInsta($scope.windowInfoWithToken, function (response) {
 
